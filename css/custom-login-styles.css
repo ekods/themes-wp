@@ -1,0 +1,66 @@
+body.login {
+  background: linear-gradient(-45deg, #E73C7E, #23A6D5, #23D5AB);
+	background-size: 400% 400%;
+	-webkit-animation: Gradient 15s ease infinite;
+	-moz-animation: Gradient 15s ease infinite;
+	animation: Gradient 15s ease infinite;
+}
+
+.login form input[type="checkbox"],
+.login #login_error,
+.login .message,
+.login .success,
+.login form {
+  border-radius: 10px;
+  background: rgba(255,255,255, 0.4);
+}
+
+
+.login form .input,
+.login input[type="text"] {
+  border: none;
+  border-bottom: 1px solid #000;
+  box-shadow: none;
+  background: transparent;
+}
+
+.login p,
+.login label {
+  font-size: 10px;
+}
+
+@-webkit-keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+@-moz-keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+@keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
