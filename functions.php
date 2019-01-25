@@ -90,4 +90,61 @@ function themes_name_scripts() {
 add_action( 'wp_enqueue_scripts', 'themes_name_scripts' );
 
 
+
+
+function opengraph_tags() {
+    // defaults
+    $title = get_bloginfo('title');
+    $img_src = get_stylesheet_directory_uri() . '/images/logo_level-tujuh.png';
+    $excerpt = get_bloginfo('description');
+    // for non posts/pages, like /blog, just use the current URL
+    $permalink = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+    if(is_single() || is_page()) {
+        global $post;
+        setup_postdata( $post );
+        $title = get_the_title();
+        $permalink = get_the_permalink();
+        if (has_post_thumbnail($post->ID)) {
+            $img_src = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'large')[0];
+        }
+        $excerpt = get_the_excerpt();
+        if ($excerpt) {
+            $excerpt = strip_tags($excerpt);
+            $excerpt = str_replace("", "'", $excerpt);
+        }
+    }
+    ?>
+
+	<meta name="resource-type" content="document" />
+	<meta http-equiv="content-type" content="text/html; charset=US-ASCII" />
+	<meta property="og:title" content="<?= $title; ?>"/>
+	<meta property="og:description" content="<?= $excerpt; ?>"/>
+	<meta property="og:url" content="<?= $permalink; ?>"/>
+	<meta property="og:site_name" content="<?= get_bloginfo(); ?>"/>
+	<meta property="og:type" content="<?php if ( is_front_page() ) { echo "website"; } else { echo "article"; } ?>">
+
+	<meta name="language" content="Indonesia" />
+	<meta name="organization" content="<?= get_bloginfo(); ?>" />
+	<meta name="copyright" content="Copyright (c)2019 <?= get_bloginfo(); ?>" />
+	<meta name="audience" content="<?= get_bloginfo(); ?>" />
+	<meta name="classification" content="Indonesia, English, Company Profile, Company Spirit" />
+	<meta name="rating" content="general" />
+	<meta name="page-topic" content="" />
+	<meta name="revisit-after" content="7 days" />
+	<meta name="mssmarttagspreventparsing" content="true" />
+
+
+	<?php if(!is_single()){
+	if(is_home() || is_front_page()){ // not sure if you have set a static page as your front page
+		echo '<meta property="og:url" content="'.get_bloginfo('url').'" />';
+	}elseif(is_tag()){
+		echo '<meta property="og:url" content="http://'.$_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"].' ">';
+		}
+	} ?>
+
+<?php
+}
+add_action('wp_head', 'opengraph_tags', 5);
+
+
 ?>
