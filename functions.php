@@ -116,7 +116,6 @@ function opengraph_tags() {
     ?>
 
 	<meta name="resource-type" content="document" />
-	<meta http-equiv="content-type" content="text/html; charset=US-ASCII" />
 	<meta property="og:title" content="<?= $title; ?>"/>
 	<meta property="og:description" content="<?= $excerpt; ?>"/>
 	<meta property="og:url" content="<?= $permalink; ?>"/>
