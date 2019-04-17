@@ -115,6 +115,7 @@ function opengraph_tags() {
     }
     ?>
 
+	<!-- meta tag facebook -->
 	<meta name="resource-type" content="document" />
 	<meta property="og:title" content="<?= $title; ?>"/>
 	<meta property="og:description" content="<?= $excerpt; ?>"/>
