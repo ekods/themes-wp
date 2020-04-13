@@ -245,3 +245,36 @@ button,
 	color: #686868;
 	/* font-family: Montserrat, "Helvetica Neue", sans-serif; */
 }
+
+
+
+
+.navigation {
+  float: left;
+  width: 100%;
+}
+
+.navigation ul {
+  text-align: right;
+}
+
+.navigation ul li {
+  display: inline-table;
+  margin: 3px;
+}
+
+.navigation ul li a {
+  width: 30px;
+  height: 30px;
+  float: left;
+  background: #BFBDBD;
+  text-align: center;
+  line-height: 30px;
+  color: #4B4B4B;
+  font-size: 14px;
+}
+
+.navigation ul li.active a {
+  background: #F9423A;
+  color: #fff;
+}
