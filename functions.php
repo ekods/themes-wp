@@ -108,13 +108,13 @@ add_action('admin_head', 'add_favicon');
 function themes_name_scripts() {
 
 	wp_enqueue_script( 'js-min', get_template_directory_uri() . '/js/jquery.min.js', array(), THEME_VERSION);
-	wp_enqueue_script( 'JS-global', get_template_directory_uri() . '/js/global.js', array('jquery'), THEME_VERSION, TRUE );
-	wp_enqueue_script( 'JS-global', get_template_directory_uri() . '/js/aos.js', array('jquery'), THEME_VERSION, TRUE );
+	wp_enqueue_script( 'js-global', get_template_directory_uri() . '/js/global.js', array('jquery'), THEME_VERSION, TRUE );
+	wp_enqueue_script( 'js-global', get_template_directory_uri() . '/js/aos.js', array('jquery'), THEME_VERSION, TRUE );
 
-	wp_enqueue_style( 'style', get_template_directory_uri() . '/aos.css', array(), THEME_VERSION );
-	wp_enqueue_style( 'style', get_template_directory_uri() . '/util.min.css', array(), THEME_VERSION );
+	wp_enqueue_style( 'css-aos', get_template_directory_uri() . '/css/aos.css', array(), THEME_VERSION );
+	wp_enqueue_style( 'css-util', get_template_directory_uri() . '/css/util.min.css', array(), THEME_VERSION );
 	wp_enqueue_style( 'style', get_template_directory_uri() . '/style.css', array(), THEME_VERSION );
-	wp_enqueue_style( 'CSS-global', get_template_directory_uri() . '/css/global.css', array(), THEME_VERSION );
+	wp_enqueue_style( 'css-global', get_template_directory_uri() . '/css/global.css', array(), THEME_VERSION );
 }
 
 add_action( 'wp_enqueue_scripts', 'themes_name_scripts' );
