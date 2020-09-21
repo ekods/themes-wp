@@ -4,43 +4,6 @@
  *
  */
 
- add_action( 'admin_enqueue_scripts', 'mw_enqueue_color_picker' );
- function mw_enqueue_color_picker( $hook_suffix ) {
-     // first check that $hook_suffix is appropriate for your admin page
-     wp_enqueue_style( 'wp-color-picker' );
-		 wp_enqueue_script( 'my-script-handle', get_template_directory_uri() . '/includes/js/my-script.js', array('wp-color-picker'), false, true  );
-
- }
-
- function my_theme_media_script_load() {
-
-	    wp_enqueue_style('thickbox');
-	    wp_enqueue_script('media-upload');
-			wp_register_script('my-custom-media-upload', get_bloginfo("template_url") .
-					'/includes/js/my-script.js', array('jquery','media-upload','thickbox'));
-	    wp_enqueue_script('thickbox');
-
-      wp_enqueue_script( 'js-codemirror', get_template_directory_uri() . '/includes/js/codemirror.js', array('jquery'), THEME_VERSION , TRUE );
-      wp_enqueue_script( 'js-javascript', get_template_directory_uri() . '/includes/js/javascript.js', array('jquery'), THEME_VERSION , TRUE );
-      wp_enqueue_script( 'js-active-line', get_template_directory_uri() . '/includes/js/active-line.js', array('jquery'), THEME_VERSION , TRUE );
-      wp_enqueue_script( 'js-matchbrackets', get_template_directory_uri(). '/includes/js/matchbrackets.js', array('jquery'), THEME_VERSION , TRUE );
-      wp_enqueue_script( 'js-css', get_template_directory_uri(). '/includes/js/css.js', array('jquery'), THEME_VERSION , TRUE );
-      wp_enqueue_script( 'js-show-hint', get_template_directory_uri(). '/includes/js/show-hint.js', array('jquery'), THEME_VERSION , TRUE );
-      wp_enqueue_script( 'js-css-hint', get_template_directory_uri(). '/includes/js/css-hint.js', array('jquery'), THEME_VERSION , TRUE );
-      wp_enqueue_script( 'js-selection-pointer', get_template_directory_uri(). '/includes/js/selection-pointer.js', array('jquery'), THEME_VERSION , TRUE );
-      wp_enqueue_script( 'js-xml', get_template_directory_uri(). '/includes/js/xml.js', array('jquery'), THEME_VERSION , TRUE );
-      wp_enqueue_script( 'js-vbscript', get_template_directory_uri(). '/includes/js/vbscript.js', array('jquery'), THEME_VERSION , TRUE );
-      wp_enqueue_script( 'js-htmlmixed', get_template_directory_uri(). '/includes/js/htmlmixed.js', array('jquery'), THEME_VERSION , TRUE );
-
-      wp_enqueue_style( 'codemirror', get_template_directory_uri() . '/includes/css/codemirror.css', array(), THEME_VERSION );
-      wp_enqueue_style( 'show-hint', get_template_directory_uri() . '/includes/css/show-hint.css', array(), THEME_VERSION );
-      wp_enqueue_style( 'css-material', get_template_directory_uri() . '/includes/css/material.css', array(), THEME_VERSION );
-
-
- }
- add_action ('admin_init', 'my_theme_media_script_load');
-
-
 
 
 // Exit if accessed directly
@@ -181,6 +144,35 @@ if ( ! class_exists( 'WPEX_Theme_Options' ) ) {
             wp_enqueue_script('jquery');
             // This will enqueue the Media Uploader script
             wp_enqueue_media();
+
+						// first check that $hook_suffix is appropriate for your admin page
+						wp_enqueue_style( 'wp-color-picker' );
+					 	wp_enqueue_script( 'my-script-handle', get_template_directory_uri() . '/includes/js/my-script.js', array('wp-color-picker'), false, true  );
+
+
+					 wp_enqueue_style('thickbox');
+					 wp_enqueue_script('media-upload');
+					 wp_register_script('my-custom-media-upload', get_bloginfo("template_url") .
+							 '/includes/js/my-script.js', array('jquery','media-upload','thickbox'));
+					 wp_enqueue_script('thickbox');
+
+					 wp_enqueue_script( 'js-codemirror', get_template_directory_uri() . '/includes/js/codemirror.js', array('jquery'), THEME_VERSION , TRUE );
+					 wp_enqueue_script( 'js-javascript', get_template_directory_uri() . '/includes/js/javascript.js', array('jquery'), THEME_VERSION , TRUE );
+					 wp_enqueue_script( 'js-active-line', get_template_directory_uri() . '/includes/js/active-line.js', array('jquery'), THEME_VERSION , TRUE );
+					 wp_enqueue_script( 'js-matchbrackets', get_template_directory_uri(). '/includes/js/matchbrackets.js', array('jquery'), THEME_VERSION , TRUE );
+					 wp_enqueue_script( 'js-css', get_template_directory_uri(). '/includes/js/css.js', array('jquery'), THEME_VERSION , TRUE );
+					 wp_enqueue_script( 'js-show-hint', get_template_directory_uri(). '/includes/js/show-hint.js', array('jquery'), THEME_VERSION , TRUE );
+					 wp_enqueue_script( 'js-css-hint', get_template_directory_uri(). '/includes/js/css-hint.js', array('jquery'), THEME_VERSION , TRUE );
+					 wp_enqueue_script( 'js-selection-pointer', get_template_directory_uri(). '/includes/js/selection-pointer.js', array('jquery'), THEME_VERSION , TRUE );
+					 wp_enqueue_script( 'js-xml', get_template_directory_uri(). '/includes/js/xml.js', array('jquery'), THEME_VERSION , TRUE );
+					 wp_enqueue_script( 'js-vbscript', get_template_directory_uri(). '/includes/js/vbscript.js', array('jquery'), THEME_VERSION , TRUE );
+					 wp_enqueue_script( 'js-htmlmixed', get_template_directory_uri(). '/includes/js/htmlmixed.js', array('jquery'), THEME_VERSION , TRUE );
+
+					 wp_enqueue_style( 'codemirror', get_template_directory_uri() . '/includes/css/codemirror.css', array(), THEME_VERSION );
+					 wp_enqueue_style( 'show-hint', get_template_directory_uri() . '/includes/css/show-hint.css', array(), THEME_VERSION );
+					 wp_enqueue_style( 'css-material', get_template_directory_uri() . '/includes/css/material.css', array(), THEME_VERSION );
+
+
       ?>
 
 			<div class="wrap">
@@ -220,7 +212,8 @@ if ( ! class_exists( 'WPEX_Theme_Options' ) ) {
 						</tr>
 
 
-						<?php // KEYWORD ?>
+
+						<?php // Header Color ?>
 						<tr valign="top">
 							<th scope="row"><?php esc_html_e( 'Header Color', 'text-domain' ); ?></th>
 							<td>
@@ -249,6 +242,17 @@ if ( ! class_exists( 'WPEX_Theme_Options' ) ) {
 								<p class="description">The meta description tag is a brief and concise summary of your page's content.</p>
 							</td>
 						</tr>
+
+
+						<?php // Description ?>
+						<tr valign="top">
+							<th scope="row"><?php esc_html_e( 'Description', 'text-domain' ); ?></th>
+							<td>
+								<?php $themes_description = self::get_theme_option( 'themes_description' ); ?>
+								<textarea name="theme_options[themes_description]" rows="5" cols="80"><?php echo esc_attr( $themes_description); ?></textarea>
+							</td>
+						</tr>
+
 					</table>
 
 					<br>
