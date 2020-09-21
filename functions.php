@@ -109,7 +109,7 @@ function themes_name_scripts() {
 
 	wp_enqueue_script( 'js-min', get_template_directory_uri() . '/js/jquery.min.js', array(), THEME_VERSION);
 	wp_enqueue_script( 'js-global', get_template_directory_uri() . '/js/global.js', array('jquery'), THEME_VERSION, TRUE );
-	wp_enqueue_script( 'js-global', get_template_directory_uri() . '/js/aos.js', array('jquery'), THEME_VERSION, TRUE );
+	wp_enqueue_script( 'js-aos', get_template_directory_uri() . '/js/aos.js', array('jquery'), THEME_VERSION, TRUE );
 
 	wp_enqueue_style( 'css-aos', get_template_directory_uri() . '/css/aos.css', array(), THEME_VERSION );
 	wp_enqueue_style( 'css-util', get_template_directory_uri() . '/css/util.min.css', array(), THEME_VERSION );
@@ -118,6 +118,7 @@ function themes_name_scripts() {
 }
 
 add_action( 'wp_enqueue_scripts', 'themes_name_scripts' );
+
 
 
 
@@ -148,29 +149,47 @@ function opengraph_tags() {
     ?>
 
 	<!-- favicon -->
-	<link rel="icon" type="image/png" href="<?php echo get_template_directory_uri(); ?>/images/favicon/favicon-16x16.png" sizes="16x16">
-	<link rel="icon" type="image/png" href="<?php echo get_template_directory_uri(); ?>/images/favicon/favicon-32x32.png" sizes="32x32">
-	<link rel="apple-touch-icon" sizes="72x72" href="<?php echo get_template_directory_uri(); ?>/images/favicon/favicon-72x72.png">
-	<link rel="icon" type="image/png" href="<?php echo get_template_directory_uri(); ?>/images/favicon/favicon-96x96.png" sizes="96x96">
-	<link rel="apple-touch-icon" sizes="114x114" href="<?php echo get_template_directory_uri(); ?>/images/favicon/favicon-114x114.png">
-	<link rel="apple-touch-icon" sizes="228x228" href="<?php echo get_template_directory_uri(); ?>/images/favicon/favicon-228x228.png">
-	<link rel="icon" type="image/x-icon" href="<?php echo get_template_directory_uri(); ?>/images/favicon/favicon.png">
-	<link rel="shortcut icon" type="image/x-icon" href="<?php echo get_template_directory_uri(); ?>/images/favicon/favicon.png">
+	<link rel="icon" type="image/png" href="<?php echo get_template_directory_uri(); ?>/images/favicon/favicon-16x16.jpg" sizes="16x16">
+	<link rel="icon" type="image/png" href="<?php echo get_template_directory_uri(); ?>/images/favicon/favicon-32x32.jpg" sizes="32x32">
+	<link rel="apple-touch-icon" sizes="72x72" href="<?php echo get_template_directory_uri(); ?>/images/favicon/favicon-72x72.jpg">
+	<link rel="icon" type="image/png" href="<?php echo get_template_directory_uri(); ?>/images/favicon/favicon-96x96.jpg" sizes="96x96">
+	<link rel="apple-touch-icon" sizes="114x114" href="<?php echo get_template_directory_uri(); ?>/images/favicon/favicon-114x114.jpg">
+	<link rel="apple-touch-icon" sizes="228x228" href="<?php echo get_template_directory_uri(); ?>/images/favicon/favicon-228x228.jpg">
+	<link rel="icon" type="image/x-icon" href="<?php echo get_template_directory_uri(); ?>/images/favicon/favicon.jpg">
+	<link rel="shortcut icon" type="image/x-icon" href="<?php echo get_template_directory_uri(); ?>/images/favicon/favicon.jpg">
 
 	<?php
 		$themes_header_color = myprefix_get_theme_option( 'themes_header_color' );
 		if (!empty( $themes_header_color )) {
-			echo '<meta name="keywords" content="'. $themes_header_color .'"/>';
+			echo '<meta name="theme-color" content="'. $themes_header_color .'"/>';
 			echo '<meta name="msapplication-TileColor" content="'. $themes_header_color .'">';
 		}
 	?>
 
-
+  <!-- meta tag seo html-->
+  <meta name="description" content="<?php if ( is_single() ) {
+          single_post_title('', true);
+      } else {
+        $themes_description = myprefix_get_theme_option( 'themes_description' );
+        echo $themes_description;
+      }
+      ?>" />
 
 	<!-- meta tag facebook -->
 	<meta name="resource-type" content="document" />
 	<meta property="og:title" content="<?= $title; ?>"/>
-	<meta property="og:description" content="<?= $excerpt; ?>"/>
+
+
+	<meta property="og:description" content="<?php if ( is_single() ) {
+          single_post_title('', true);
+      } else {
+        $themes_description = myprefix_get_theme_option( 'themes_description' );
+
+        echo $themes_description;
+      }
+      ?>"/>
+
+
 	<?php if(!is_single()){
 	if(is_home() || is_front_page()){ // not sure if you have set a static page as your front page
 		echo '<meta property="og:url" content="'.get_bloginfo('url').'" />';
@@ -185,16 +204,25 @@ function opengraph_tags() {
 					$post_thumbnail = wp_get_attachment_image_src(get_post_thumbnail_id(),'large');
 					echo $post_thumbnail[0];
 				}else{
-						echo get_template_directory_uri().'/images/favicon/favicon.png';
+						echo get_template_directory_uri().'/images/favicon/favicon.jpg';
 				}?>" />
 	<meta property="og:image:secure_url" content="<?php
 				if (is_single()) {
 					$post_thumbnail = wp_get_attachment_image_src(get_post_thumbnail_id(),'large');
 					echo $post_thumbnail[0];
 				}else{
-						echo get_template_directory_uri().'/images/favicon/favicon.png';
+						echo get_template_directory_uri().'/images/favicon/favicon.jpg';
 				}?>" />
 
+  <meta name="author" content="">
+  <meta name="publisher" content="">
+  <link rel="image_src" href="<?php
+				if (is_single()) {
+					$post_thumbnail = wp_get_attachment_image_src(get_post_thumbnail_id(),'large');
+					echo $post_thumbnail[0];
+				}else{
+						echo get_template_directory_uri().'/images/favicon/favicon.jpg';
+				}?>" />
 	<meta name="language" content="Indonesia" />
 	<meta name="organization" content="<?= get_bloginfo(); ?>" />
 	<meta name="copyright" content="Copyright (c)2020 <?= get_bloginfo(); ?>" />
@@ -209,7 +237,7 @@ function opengraph_tags() {
 					$post_thumbnail = wp_get_attachment_image_src(get_post_thumbnail_id(),'large');
 					echo $post_thumbnail[0];
 				}else{
-						echo get_template_directory_uri().'/images/favicon/favicon.png';
+						echo get_template_directory_uri().'/images/favicon/favicon.jpg';
 				}?>" />
 
 	<link rel="alternate" type="application/rss+xml" title="Feed" href="<?= get_bloginfo('feed'); ?>" />
@@ -226,6 +254,7 @@ function opengraph_tags() {
 <?php
 }
 add_action('wp_head', 'opengraph_tags', 5);
+
 
 
 
